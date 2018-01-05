@@ -1,6 +1,6 @@
 //  This file is part of Qt Bitcion Trader
 //      https://github.com/JulyIGHOR/QtBitcoinTrader
-//  Copyright (C) 2013-2014 July IGHOR <julyighor@gmail.com>
+//  Copyright (C) 2013-2015 July IGHOR <julyighor@gmail.com>
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -64,7 +64,9 @@ public:
 	JulyHttp(const QString &hostName, const QByteArray &restKeyLine, QObject *parent, const bool &secure=true, const bool &keepAlive=true, const QByteArray &contentType="application/x-www-form-urlencoded");
 	~JulyHttp();
 
+    void setPortForced(quint16 port){forcedPort=port;}
 private:
+    quint16 forcedPort;
     QByteArray outBuffer;
     QByteArray contentTypeLine;
 	int noReconnectCount;

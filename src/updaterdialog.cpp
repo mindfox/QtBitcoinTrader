@@ -1,6 +1,6 @@
 //  This file is part of Qt Bitcion Trader
 //      https://github.com/JulyIGHOR/QtBitcoinTrader
-//  Copyright (C) 2013-2014 July IGHOR <julyighor@gmail.com>
+//  Copyright (C) 2013-2015 July IGHOR <julyighor@gmail.com>
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -118,6 +118,8 @@ UpdaterDialog::UpdaterDialog(bool fbMess)
 
 UpdaterDialog::~UpdaterDialog()
 {
+    QSettings settings(appDataDir+"/QtBitcoinTrader.cfg",QSettings::IniFormat);
+    settings.setValue("AutoUpdate",ui.againAutoUpdateCheckBox->isChecked());
 }
 
 QByteArray UpdaterDialog::getMidData(QString a, QString b,QByteArray *data)
@@ -188,7 +190,7 @@ void UpdaterDialog::dataReceived(QByteArray dataReceived,int reqType)
 		updateLink=versionsMap.value(os+"Bin");
 		}
 
-		if(updateVersion.toDouble()<=baseValues.appVerReal)
+        if(updateVersion.toDouble()<=baseValues.appVerReal)
 		{
 			if(feedbackMessage)
 			{
